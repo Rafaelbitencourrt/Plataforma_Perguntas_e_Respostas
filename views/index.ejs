@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Prog perguntas</title>
+    <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
     <h1>Prog Perguntas</h1>
@@ -20,6 +21,10 @@
     <h3>Isso é uma msg de erro!!!!</h3>
     <%} else {%>
     <h3>Nenhum erro!!!</h3>
-    <%}%>
+    <%}%> <% produtos.forEach(function(produto){ %>
+    <hr />
+    <h4><%= produto.nome %></h4>
+    <h3><%= produto.preco %></h3>
+    <% }) %>
   </body>
 </html>
