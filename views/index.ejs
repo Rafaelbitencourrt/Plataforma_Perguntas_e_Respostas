@@ -15,5 +15,11 @@
     <p>Linguagem:<%= lang %></p>
     <p>Empresa:<%= empresa %></p>
     <p>Inscritos:<%= inscritos %></p>
+
+    <% if(msg){%>
+    <h3>Isso é uma msg de erro!!!!</h3>
+    <%} else {%>
+    <h3>Nenhum erro!!!</h3>
+    <%}%>
   </body>
 </html>
