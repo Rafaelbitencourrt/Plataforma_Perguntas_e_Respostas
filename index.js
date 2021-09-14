@@ -5,25 +5,16 @@ const PORT = 3000;
 app.set("view engine", "ejs"); //utilizando EJS
 app.use(express.static("public")); //utilizando arquivos estaticos
 
-app.get("/:nome/:lang", (req, res) => {
-  var nome = req.params.nome;
-  var lang = req.params.lang;
-  var exibirMsg = false;
+app.get("/", (req, res) => {
+  res.render("index");
+});
 
-  var produtos = [
-    { nome: "Doritos", preco: 3.14 },
-    { nome: "Coca-cola", preco: 4.99 },
-    { nome: "Milka", preco: 3.5 },
-  ];
+app.get("/perguntar", (req, res) => {
+  res.render("perguntar");
+});
 
-  res.render("index", {
-    nome: nome,
-    lang: lang,
-    empresa: "Guia do programador",
-    inscritos: 8000,
-    msg: exibirMsg,
-    produtos: produtos,
-  });
+app.post("/salvarpergunta", (req, res) => {
+  res.send("Formulário enviado!");
 });
 
 app.listen(PORT, () => {
