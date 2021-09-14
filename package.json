@@ -1,0 +1,23 @@
+{
+  "name": "plataforma_perguntas_e_respostas",
+  "version": "1.0.0",
+  "description": "Uma plataforma de perguntas e respostas",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rafaelbitencourrt/Plataforma_Perguntas_e_Respostas.git"
+  },
+  "author": "Rafael Bitencourt",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rafaelbitencourrt/Plataforma_Perguntas_e_Respostas/issues"
+  },
+  "homepage": "https://github.com/Rafaelbitencourrt/Plataforma_Perguntas_e_Respostas#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1"
+  }
+}
