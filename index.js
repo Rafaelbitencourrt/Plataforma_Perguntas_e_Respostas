@@ -1,18 +1,35 @@
 const express = require("express");
 const app = express();
 const PORT = 3000;
+const connection = require("./database/database");
+const Pergunta = require("./database/Pergunta");
+
+//DATABASE
+
+connection
+  .authenticate()
+  .then(() => {
+    console.log("Conexão feita com o banco de dados!");
+  })
+  .catch((msgErro) => {
+    console.log(msgErro);
+  });
 
 //EJS E ARQUIVOS ESTATICOS
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 
-//bodyparser
+//BODYPARSER
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 //ROTAS
 app.get("/", (req, res) => {
-  res.render("index");
+  Pergunta.findAll({ raw: true }).then((perguntas) => {
+    res.render("index", {
+      perguntas: perguntas,
+    });
+  });
 });
 
 app.get("/perguntar", (req, res) => {
@@ -23,9 +40,12 @@ app.post("/salvarpergunta", (req, res) => {
   var titulo = req.body.titulo;
   var descricao = req.body.descricao;
 
-  res.send(
-    "Formulário enviado!! Titulo:" + titulo + " " + "Descricao:" + descricao
-  );
+  Pergunta.create({
+    titulo: titulo,
+    descricao: descricao,
+  }).then(() => {
+    res.redirect("/");
+  });
 });
 
 app.listen(PORT, () => {
