@@ -3,6 +3,7 @@ const app = express();
 const PORT = 3000;
 const connection = require("./database/database");
 const Pergunta = require("./database/Pergunta");
+const Resposta = require("./database/Resposta");
 
 //DATABASE
 
@@ -68,6 +69,18 @@ app.get("/pergunta/:id", (req, res) => {
       //pergunta não encontrada
       res.redirect("/");
     }
+  });
+});
+
+app.post("/responder", (req, res) => {
+  var corpo = req.body.corpo;
+  var perguntaId = req.body.pergunta;
+
+  Resposta.create({
+    corpo: corpo,
+    perguntaId: perguntaId,
+  }).then(() => {
+    res.redirect("/pergunta/" + perguntaId);
   });
 });
 
