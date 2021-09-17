@@ -80,8 +80,14 @@ app.post("/responder", (req, res) => {
     corpo: corpo,
     perguntaId: perguntaId,
   }).then(() => {
-    res.redirect("/pergunta/" + perguntaId);
+    res.redirect("/");
   });
+  /*  Resposta.create({
+    corpo: corpo,
+    perguntaId: perguntaId,
+  }).then(() => {
+    res.redirect("/pergunta/" + perguntaId);
+  });*/
 });
 
 app.listen(PORT, () => {
