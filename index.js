@@ -53,6 +53,22 @@ app.post("/salvarpergunta", (req, res) => {
   });
 });
 
+//acessando a pagina de uma pergunta atraves do id
+app.get("/pergunta/:id", (req, res) => {
+  var id = req.params.id;
+  Pergunta.findOne({
+    where: { id: id },
+  }).then((pergunta) => {
+    if (pergunta != undefined) {
+      //pergunta encontrada
+      res.render("pergunta");
+    } else {
+      //pergunta não encontrada
+      res.redirect("/");
+    }
+  });
+});
+
 app.listen(PORT, () => {
   console.log("app rodando");
 });
