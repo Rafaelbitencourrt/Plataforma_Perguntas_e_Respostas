@@ -62,8 +62,14 @@ app.get("/pergunta/:id", (req, res) => {
   }).then((pergunta) => {
     if (pergunta != undefined) {
       //pergunta encontrada
-      res.render("pergunta", {
-        pergunta: pergunta,
+      Resposta.findAll({
+        where: { perguntaId: pergunta.id },
+        order: [["id", "DESC"]],
+      }).then((respostas) => {
+        res.render("pergunta", {
+          pergunta: pergunta,
+          respostas: respostas,
+        });
       });
     } else {
       //pergunta não encontrada
@@ -72,6 +78,7 @@ app.get("/pergunta/:id", (req, res) => {
   });
 });
 
+//RESPONDENDO PERGUNTAS
 app.post("/responder", (req, res) => {
   var corpo = req.body.corpo;
   var perguntaId = req.body.pergunta;
@@ -79,14 +86,8 @@ app.post("/responder", (req, res) => {
     corpo: corpo,
     perguntaId: perguntaId,
   }).then(() => {
-    res.redirect("/pergunta/"+perguntaId);
-  });
-  /*  Resposta.create({
-    corpo: corpo,
-    perguntaId: perguntaId,
-  }).then(() => {
     res.redirect("/pergunta/" + perguntaId);
-  });*/
+  });
 });
 
 app.listen(PORT, () => {

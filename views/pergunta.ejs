@@ -13,10 +13,18 @@
         placeholder="Digite sua resposta"
         class="form-control"
         name="corpo"
-      ></textarea
-      ><input type="hidden" name="pergunta" value="<%= pergunta.id %> " /><br />
+      ></textarea>
+      <input type="hidden" name="pergunta" value="<%= pergunta.id %> " /><br />
       <button type="submit" class="btn btn-primary">Responder</button>
     </form>
+    <hr />
+    <h3>Respostas</h3>
+    <hr />
+    <% respostas.forEach(resposta =>{%> <br />
+    <div class="card">
+      <div class="card-body"><p><%= resposta.corpo %></p></div>
+    </div>
+    <%}) %>
   </div>
 </body>
-<%- include ('partials/footer.ejs'); %>
+<%- include ('partials/footer.ejs'); %> 8
