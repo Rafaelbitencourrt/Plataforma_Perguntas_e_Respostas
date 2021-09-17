@@ -6,12 +6,13 @@ const Resposta = connection.define("respostas", {
     type: Sequelize.TEXT,
     allowNull: false,
   },
-  perguntaID: {
+  perguntaId: {
     type: Sequelize.INTEGER,
     allowNull: false,
   },
 });
 
-Resposta.sync({ force: false });
+Resposta.sync({ force: false }).then(() => {
+  console.log("Tabela resposta")})
 
-module.exports = Resposta;
+module.exports = Resposta
