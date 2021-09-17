@@ -61,7 +61,9 @@ app.get("/pergunta/:id", (req, res) => {
   }).then((pergunta) => {
     if (pergunta != undefined) {
       //pergunta encontrada
-      res.render("pergunta");
+      res.render("pergunta", {
+        pergunta: pergunta,
+      });
     } else {
       //pergunta não encontrada
       res.redirect("/");
